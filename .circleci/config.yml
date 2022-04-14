@@ -1,12 +1,10 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@1.0.4
-  aws-cli: circleci/aws-cli@3.0.0
 jobs:
   test:
     docker:
-      - image: cimg/node:17.9.0
-      - image: cimg/python:3.9
+      - image: cimg/python:3.9-node
     steps:
       - checkout
       - run: npm install
@@ -14,8 +12,7 @@ jobs:
       - run: npm run lint
   deploy:
     docker:
-      - image: cimg/node:17.9.0
-      - image: cimg/python:3.9
+      - image: cimg/python:3.9-node
     environment:
       AWS_REGION: eu-west-2
     steps:
